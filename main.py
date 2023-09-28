@@ -68,7 +68,7 @@ class YaDisk:
                          f'{src}/{self.message.document.file_name}')
                 await self.bot.send_message(self.message.chat.id, 'документ успешно загружен')
         except Exception:
-            await self.bot.send_message(self.message.chat.id, 'документ успешно загружен')
+            await self.bot.send_message(self.message.chat.id, 'отправка не удалась')
 
     async def save_video(self):
         try:
@@ -87,7 +87,7 @@ class YaDisk:
                          f'{src}/{self.message.video.file_name}')
                 await self.bot.send_message(self.message.chat.id, 'видео успешно загружено')
         except Exception:
-            await self.bot.send_message(self.message.chat.id, 'видео успешно загружено')
+            await self.bot.send_message(self.message.chat.id, 'отправка не удалась')
 
 
 async def main():
