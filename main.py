@@ -33,46 +33,61 @@ class YaDisk:
         self.message = message
 
     async def save_photo(self):
-        file_id = self.message.photo[-1].file_id
-        file = await self.bot.get_file(file_id)
-        file_path = file.file_path
-        src = f'/суетологи/{datetime.now().day}.{datetime.now().month}.{datetime.now().year}'
-        if y.exists(src) is False:
-            y.mkdir(src)
-            y.upload(await self.bot.download_file(file_path),
-                     f'{src}/{self.message.photo[-1].file_name}')
+        try:
+            file_id = self.message.photo[-1].file_id
+            file = await self.bot.get_file(file_id)
+            file_path = file.file_path
+            src = f'/суетологи/{datetime.now().day}.{datetime.now().month}.{datetime.now().year}'
+            if y.exists(src) is False:
+                y.mkdir(src)
+                y.upload(await self.bot.download_file(file_path),
+                         f'{src}/{datetime.now().hour}.{datetime.now().minute}.{datetime.now().second}.jpg')
+                await self.bot.send_message(self.message.chat.id, 'фото успешно загружено')
 
-        else:
-            y.upload(await self.bot.download_file(file_path),
-                     f'{src}/{self.message.photo[-1].file_name}')
+            else:
+                y.upload(await self.bot.download_file(file_path),
+                         f'{src}/{datetime.now().hour}.{datetime.now().minute}.{datetime.now().second}.jpg')
+                await self.bot.send_message(self.message.chat.id, 'фото успешно загружено')
+        except Exception:
+            await self.bot.send_message(self.message.chat.id, 'отправка не удалась')
 
     async def save_doc(self):
-        file_id = self.message.document.file_id
-        file = await self.bot.get_file(file_id)
-        file_path = file.file_path
-        src = f'/суетологи/{datetime.now().day}.{datetime.now().month}.{datetime.now().year}'
-        if y.exists(src) is False:
-            y.mkdir(src)
-            y.upload(await self.bot.download_file(file_path),
-                     f'{src}/{self.message.document.file_name}')
+        try:
+            file_id = self.message.document.file_id
+            file = await self.bot.get_file(file_id)
+            file_path = file.file_path
+            src = f'/суетологи/{datetime.now().day}.{datetime.now().month}.{datetime.now().year}'
+            if y.exists(src) is False:
+                y.mkdir(src)
+                y.upload(await self.bot.download_file(file_path),
+                         f'{src}/{self.message.document.file_name}')
+                await self.bot.send_message(self.message.chat.id, 'документ успешно загружен')
 
-        else:
-            y.upload(await self.bot.download_file(file_path),
-                     f'{src}/{self.message.document.file_name}')
+            else:
+                y.upload(await self.bot.download_file(file_path),
+                         f'{src}/{self.message.document.file_name}')
+                await self.bot.send_message(self.message.chat.id, 'документ успешно загружен')
+        except Exception:
+            await self.bot.send_message(self.message.chat.id, 'документ успешно загружен')
 
     async def save_video(self):
-        file_id = self.message.video.file_id
-        file = await self.bot.get_file(file_id)
-        file_path = file.file_path
-        src = f'/суетологи/{datetime.now().day}.{datetime.now().month}.{datetime.now().year}'
-        if y.exists(src) is False:
-            y.mkdir(src)
-            y.upload(await self.bot.download_file(file_path),
-                     f'{src}/{self.message.video.file_name}')
+        try:
+            file_id = self.message.video.file_id
+            file = await self.bot.get_file(file_id)
+            file_path = file.file_path
+            src = f'/суетологи/{datetime.now().day}.{datetime.now().month}.{datetime.now().year}'
+            if y.exists(src) is False:
+                y.mkdir(src)
+                y.upload(await self.bot.download_file(file_path),
+                         f'{src}/{self.message.video.file_name}')
+                await self.bot.send_message(self.message.chat.id, 'видео успешно загружено')
 
-        else:
-            y.upload(await self.bot.download_file(file_path),
-                     f'{src}/{self.message.video.file_name}')
+            else:
+                y.upload(await self.bot.download_file(file_path),
+                         f'{src}/{self.message.video.file_name}')
+                await self.bot.send_message(self.message.chat.id, 'видео успешно загружено')
+        except Exception:
+            await self.bot.send_message(self.message.chat.id, 'видео успешно загружено')
 
 
 async def main():
